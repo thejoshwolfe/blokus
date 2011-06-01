@@ -4,5 +4,12 @@ Building in Linux (Ubuntu):
 
     1. install go. http://golang.org/doc/install.html
         a. make sure GOROOT is defined and $GOROOT/bin is on your PATH
-    2. make
+    2. install SDL.
+        $ sudo apt-get install libsdl1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev
+    3. install Go-SDL.
+        $ git clone https://github.com/banthar/Go-SDL.git
+        $ cd Go-SDL
+        $ make install
+    4. build this project with make
+        $ make
 
