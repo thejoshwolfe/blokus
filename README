@@ -1,0 +1,8 @@
+Blokus implemented in go
+
+Building in Linux (Ubuntu):
+
+    1. install go. http://golang.org/doc/install.html
+        a. make sure GOROOT is defined and $GOROOT/bin is on your PATH
+    2. make
+
