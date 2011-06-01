@@ -13,7 +13,7 @@ func main() {
 	if screen == nil {
 		panic(sdl.GetError())
 	}
-	sdl.WM_SetCaption("Blokus (Caption)", "")
+	sdl.WM_SetCaption("Blokus", "")
 
 	running := true
 	for running {
@@ -44,7 +44,7 @@ func main() {
 				fmt.Printf("Type: %02x Which: %02x State: %02x Pad: %02x\n", k.Type, k.Which, k.State, k.Pad0[0])
 				fmt.Printf("Scancode: %02x Sym: %08x Mod: %04x Unicode: %04x\n", k.Keysym.Scancode, k.Keysym.Sym, k.Keysym.Mod, k.Keysym.Unicode)
 			case sdl.MOUSEBUTTONDOWN:
-				println("Click:", e.MouseButton().X, e.MouseButton().Y)
+				println("Click:", e.MouseButton().Button, e.MouseButton().X, e.MouseButton().Y)
 			case sdl.VIDEORESIZE:
 				println("resize screen ", e.Resize().W, e.Resize().H)
 
@@ -57,7 +57,7 @@ func main() {
 			}
 		}
 
-		screen.FillRect(nil, 0x302019)
+		screen.FillRect(nil, 0xa0a0a0)
 
 		screen.Flip()
 		sdl.Delay(25)
