@@ -4,7 +4,7 @@ const BoardSize = 20
 
 // order of players
 const (
-	Blue = 0
+	Blue = iota
 	Yellow
 	Red
 	Green
