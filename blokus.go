@@ -10,84 +10,92 @@ const (
 	Green
 )
 
-var Tiles = [][][]bool{
-	{{true}},
+var Tiles = [][][]bool {
+	[][]bool{
+        []bool{true},
+    },
+	[][]bool{
+        []bool{true, true},
+    },
 
-	{{true, true}},
-
-	{{true, true, true}},
-	{
-		{true, true},
-		{true, false},
+	[][]bool{
+        []bool{true, true, true},
+    },
+	[][]bool{
+		[]bool{true, true},
+		[]bool{true, false},
+	},
+	[][]bool{
+        []bool{true, true, true, true},
+    },
+	[][]bool{
+		[]bool{true, true, true},
+		[]bool{true, false, false},
+	},
+	[][]bool{
+		[]bool{true, true, true},
+		[]bool{false, true, false},
+	},
+	[][]bool{
+		[]bool{true, true, false},
+		[]bool{false, true, true},
+	},
+	[][]bool{
+		[]bool{true, true},
+		[]bool{true, true},
 	},
 
-	{{true, true, true, true}},
-	{
-		{true, true, true},
-		{true, false, false},
+	[][]bool{
+        []bool{true, true, true, true, true},
+    },
+	[][]bool{
+		[]bool{true, true, true, true},
+		[]bool{true, false, false, false},
 	},
-	{
-		{true, true, true},
-		{false, true, false},
+	[][]bool{
+		[]bool{true, true, true, true},
+		[]bool{false, true, false, false},
 	},
-	{
-		{true, true, false},
-		{false, true, true},
+	[][]bool{
+		[]bool{true, true, true, false},
+		[]bool{false, false, true, true},
 	},
-	{
-		{true, true},
-		{true, true},
+	[][]bool{
+		[]bool{true, true, true},
+		[]bool{true, true, false},
 	},
-
-	{{true, true, true, true, true}},
-	{
-		{true, true, true, true},
-		{true, false, false, false},
+	[][]bool{
+		[]bool{true, true, true},
+		[]bool{true, false, true},
 	},
-	{
-		{true, true, true, true},
-		{false, true, false, false},
+	[][]bool{
+		[]bool{true, true, true},
+		[]bool{true, false, false},
+		[]bool{true, false, false},
 	},
-	{
-		{true, true, true, false},
-		{false, false, true, true},
+	[][]bool{
+		[]bool{true, true, true},
+		[]bool{false, true, false},
+		[]bool{false, true, false},
 	},
-	{
-		{true, true, true},
-		{true, true, false},
+	[][]bool{
+		[]bool{true, true, false},
+		[]bool{false, true, true},
+		[]bool{false, true, false},
 	},
-	{
-		{true, true, true},
-		{true, false, true},
+	[][]bool{
+		[]bool{true, true, false},
+		[]bool{false, true, true},
+		[]bool{false, false, true},
 	},
-	{
-		{true, true, true},
-		{true, false, false},
-		{true, false, false},
+	[][]bool{
+		[]bool{true, true, false},
+		[]bool{false, true, false},
+		[]bool{false, true, true},
 	},
-	{
-		{true, true, true},
-		{false, true, false},
-		{false, true, false},
-	},
-	{
-		{true, true, false},
-		{false, true, true},
-		{false, true, false},
-	},
-	{
-		{true, true, false},
-		{false, true, true},
-		{false, false, true},
-	},
-	{
-		{true, true, false},
-		{false, true, false},
-		{false, true, true},
-	},
-	{
-		{false, true, false},
-		{true, true, true},
-		{false, true, false},
+	[][]bool{
+		[]bool{false, true, false},
+		[]bool{true, true, true},
+		[]bool{false, true, false},
 	},
 }
