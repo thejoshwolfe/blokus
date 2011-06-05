@@ -1,4 +1,4 @@
-package main
+package blockus
 
 const BoardSize = 20
 

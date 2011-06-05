@@ -5,12 +5,11 @@ ifeq ($(GOROOT),)
 endif
 include $(GOROOT)/src/Make.inc
 
-TARG=blokus
+TARG=blokus.bin
 GOFILES:=$(wildcard *.go)
 
-include $(GOROOT)/src/Make.cmd
+PACKAGES = blokus
+include packages.mk
 
-.PHONY: fmt
-fmt:
-	gofmt -w $(GOFILES)
+include $(GOROOT)/src/Make.cmd
 

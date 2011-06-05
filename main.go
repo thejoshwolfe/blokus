@@ -3,9 +3,12 @@ package main
 import (
 	"sdl"
 	"fmt"
+	// TODO: why is the explicit name required?
+	blokus "blokus"
 )
 
 func main() {
+	fmt.Println("loaded", len(blokus.Tiles), "shapes")
 	if sdl.Init(sdl.INIT_EVERYTHING) != 0 {
 		panic(sdl.GetError())
 	}
