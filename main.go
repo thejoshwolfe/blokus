@@ -7,6 +7,8 @@ import (
 	blokus "blokus"
 )
 
+var running = true
+
 func main() {
 	fmt.Println("loaded", len(blokus.Tiles), "shapes")
 	if sdl.Init(sdl.INIT_EVERYTHING) != 0 {
@@ -18,7 +20,6 @@ func main() {
 	}
 	sdl.WM_SetCaption("Blokus", "")
 
-	running := true
 	for running {
 		e := &sdl.Event{}
 
@@ -26,45 +27,59 @@ func main() {
 			switch e.Type {
 			case sdl.QUIT:
 				running = false
-				break
-			case sdl.KEYDOWN, sdl.KEYUP:
-				println("")
-				println(e.Keyboard().Keysym.Sym, ": ", sdl.GetKeyName(sdl.Key(e.Keyboard().Keysym.Sym)))
-
-				if e.Keyboard().Keysym.Sym == 27 {
-					running = false
-				}
-
-				fmt.Printf("%04x ", e.Type)
-
-				for i := 0; i < len(e.Pad0); i++ {
-					fmt.Printf("%02x ", e.Pad0[i])
-				}
-				println()
-
-				k := e.Keyboard()
-
-				fmt.Printf("Type: %02x Which: %02x State: %02x Pad: %02x\n", k.Type, k.Which, k.State, k.Pad0[0])
-				fmt.Printf("Scancode: %02x Sym: %08x Mod: %04x Unicode: %04x\n", k.Keysym.Scancode, k.Keysym.Sym, k.Keysym.Mod, k.Keysym.Unicode)
+			case sdl.KEYDOWN:
+				keyDown(e.Keyboard())
+			case sdl.KEYUP:
+				keyUp(e.Keyboard())
 			case sdl.MOUSEBUTTONDOWN:
-				println("Click:", e.MouseButton().Button, e.MouseButton().X, e.MouseButton().Y)
+				mouseDown(e.MouseButton())
 			case sdl.VIDEORESIZE:
-				println("resize screen ", e.Resize().W, e.Resize().H)
-
 				screen = sdl.SetVideoMode(int(e.Resize().W), int(e.Resize().H), 32, sdl.RESIZABLE)
-
 				if screen == nil {
 					panic(sdl.GetError())
 				}
 			default:
 			}
+			if !running {
+				break
+			}
 		}
 
-		screen.FillRect(nil, 0xa0a0a0)
+		draw(screen)
 
-		screen.Flip()
 		sdl.Delay(25)
 	}
 
 	sdl.Quit()
+}
+
+func stop() {
+	running = false
+}
+
+func draw(screen *sdl.Surface) {
+	screen.FillRect(nil, 0xa0a0a0)
+	screen.Flip()
+}
+
+func keyUp(k *sdl.KeyboardEvent) {
+	debugKeyboardEvent(k)
+}
+func keyDown(k *sdl.KeyboardEvent) {
+	debugKeyboardEvent(k)
+}
+func debugKeyboardEvent(k *sdl.KeyboardEvent) {
+	println("")
+	println(k.Keysym.Sym, ": ", sdl.GetKeyName(sdl.Key(k.Keysym.Sym)))
+
+	fmt.Printf("Type: %02x Which: %02x State: %02x Pad: %02x\n", k.Type, k.Which, k.State, k.Pad0[0])
+	fmt.Printf("Scancode: %02x Sym: %08x Mod: %04x Unicode: %04x\n", k.Keysym.Scancode, k.Keysym.Sym, k.Keysym.Mod, k.Keysym.Unicode)
+
+	if k.Keysym.Sym == 27 {
+		stop()
+	}
+}
+
+func mouseDown(mouseButton *sdl.MouseButtonEvent) {
+	println("Click:", mouseButton.Button, mouseButton.X, mouseButton.Y)
 }
