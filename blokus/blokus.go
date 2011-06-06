@@ -1,10 +1,11 @@
-package blockus
+package blokus
 
 const BoardSize = 20
 
 // order of players
 const (
-	Blue = iota
+	Empty = iota
+	Blue
 	Yellow
 	Red
 	Green
@@ -91,3 +92,5 @@ var Tiles = [][][]bool{
 		{false, true, false},
 	},
 }
+
+var Board [BoardSize][BoardSize]int
